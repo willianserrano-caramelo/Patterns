@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.CalculationStrategies
 {
-    public class AdditionStrategy : ICalculationStrategy
+    public class AdditionCalculationStrategy : ICalculationStrategy
     {
         public string Execute(int a, int b)
         {

@@ -1,4 +1,5 @@
 ﻿using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.Interfaces;
+using Patterns.DesignPatterns.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.CalculationStrategies
 {
-    public class MultiplicationStrategy : ICalculationStrategy
+    public class SubtractionCalculationStrategy : ICalculationStrategy
     {
         public string Execute(int a, int b)
         {
-            return $"Resultado da Multiplicação: {a * b}";
+            if (a < 0 || b < 0)
+            {
+                throw new NegativeNumberException();
+            }
+            return $"Resultado da Subtração: {a - b}";
         }
     }
 }

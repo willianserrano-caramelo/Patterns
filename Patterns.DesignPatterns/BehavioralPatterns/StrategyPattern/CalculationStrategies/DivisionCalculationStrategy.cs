@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.CalculationStrategies
 {
-    public class SubtractionStrategy : ICalculationStrategy
+    public class DivisionCalculationStrategy : ICalculationStrategy
     {
         public string Execute(int a, int b)
         {
-            if (a < 0 || b < 0)
+            if (b == 0)
             {
-                return "Erro: Números negativos não são permitidos!";
+                throw new DivideByZeroException("Erro: Tentativa de divisão por zero.");
             }
-            return $"Resultado da Subtração: {a - b}";
+            return $"Resultado da Divisão: {a / b}";
         }
     }
 }

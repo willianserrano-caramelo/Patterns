@@ -7,15 +7,11 @@ using System.Threading.Tasks;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.CalculationStrategies
 {
-    public class DivisionStrategy : ICalculationStrategy
+    public class MultiplicationCalculationStrategy : ICalculationStrategy
     {
         public string Execute(int a, int b)
         {
-            if (b == 0)
-            {
-                return "Erro: Divisão por zero!";
-            }
-            return $"Resultado da Divisão: {a / b}";
+            return $"Resultado da Multiplicação: {a * b}";
         }
     }
 }

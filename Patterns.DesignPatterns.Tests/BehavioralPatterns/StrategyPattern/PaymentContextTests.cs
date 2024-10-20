@@ -1,5 +1,6 @@
 ﻿using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern;
 using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.PaymentStrategies;
+using Patterns.DesignPatterns.Tests.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,10 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
 {
     public class PaymentContextTests
     {
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.Payments)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Fact]
         public void Test_CreditCardPaymentStrategy()
         {
@@ -23,6 +28,10 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
             Assert.Equal("Pagamento de R$100,00 processado via Cartão de Crédito.", result);
         }
 
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.Payments)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Fact]
         public void Test_PayPalPaymentStrategy()
         {
@@ -36,6 +45,10 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
             Assert.Equal("Pagamento de R$200,00 processado via PayPal.", result);
         }
 
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.Payments)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Fact]
         public void Test_NullPaymentStrategy_DefaultBehavior()
         {
@@ -49,6 +62,10 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
             Assert.Equal("Nenhuma estratégia de pagamento foi definida.", result);
         }
 
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.Payments)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Fact]
         public void Test_SetNullPaymentStrategy_UsesNullStrategy()
         {
