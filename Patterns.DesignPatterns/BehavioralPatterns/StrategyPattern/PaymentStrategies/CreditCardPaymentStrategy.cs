@@ -11,7 +11,7 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.PaymentStra
     {
         public string ProcessPayment(decimal amount)
         {
-            return $"Pagamento de R${amount} processado via Cartão de Crédito.";
+            return $"Pagamento de R${amount:F2} processado via Cartão de Crédito.";
         }
     }
 }

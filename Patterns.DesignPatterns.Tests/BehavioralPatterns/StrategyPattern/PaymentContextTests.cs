@@ -1,11 +1,7 @@
 ﻿using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern;
+using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.Interfaces;
 using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.PaymentStrategies;
 using Patterns.DesignPatterns.Tests.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
 {
@@ -49,35 +45,57 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
         [AreaTraits(Enums.TraitArea.Payments)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
-        [Fact]
-        public void Test_NullPaymentStrategy_DefaultBehavior()
+        [Theory]
+        [InlineData(100.00, "Nenhuma estratégia de pagamento foi definida.")]
+        public void Test_NullPaymentStrategy_DefaultBehavior(decimal amount, string expected)
         {
             // Arrange
             var paymentContext = new PaymentContext();
 
             // Act
-            var result = paymentContext.ProcessOrderPayment(100.00m);
+            var result = paymentContext.ProcessOrderPayment(amount);
 
             // Assert
-            Assert.Equal("Nenhuma estratégia de pagamento foi definida.", result);
+            Assert.Equal(expected, result);
         }
-
+        
         [TypeTraits(Enums.TraitType.Unit)]
         [AreaTraits(Enums.TraitArea.Payments)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
-        [Fact]
-        public void Test_SetNullPaymentStrategy_UsesNullStrategy()
+        [Theory]
+        [InlineData(100.00, "Nenhuma estratégia de pagamento foi definida.")]
+        public void Test_SetNullPaymentStrategy_UsesNullStrategy(decimal amount, string expected)
         {
             // Arrange
             var paymentContext = new PaymentContext(new CreditCardPaymentStrategy());
 
             // Act
             paymentContext.SetPaymentStrategy(null);
-            var result = paymentContext.ProcessOrderPayment(100.00m);
+            var result = paymentContext.ProcessOrderPayment(amount);
 
             // Assert
-            Assert.Equal("Nenhuma estratégia de pagamento foi definida.", result);
+            Assert.Equal(expected, result);
+        }
+
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.Payments)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
+        [Theory]
+        [InlineData(100.00, "Pagamento de R$100,00 processado via Cartão de Crédito.", typeof(CreditCardPaymentStrategy))]
+        [InlineData(200.00, "Pagamento de R$200,00 processado via PayPal.", typeof(PayPalPaymentStrategy))]
+        public void Test_PaymentStrategy_Success(decimal amount, string expected, Type strategyType)
+        {
+            // Arrange
+            var strategy = (IPaymentStrategy)Activator.CreateInstance(strategyType);
+            var paymentContext = new PaymentContext(strategy);
+
+            // Act
+            var result = paymentContext.ProcessOrderPayment(amount);
+
+            // Assert
+            Assert.Equal(expected, result);
         }
     }
 }

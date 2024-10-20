@@ -1,33 +1,29 @@
-﻿using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.CalculationStrategies;
-using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern;
+using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.CalculationStrategies;
+using Patterns.DesignPatterns.BehavioralPatterns.StrategyPattern.Interfaces;
 using Patterns.DesignPatterns.Exceptions;
-using System.ComponentModel;
 using Patterns.DesignPatterns.Tests.Attributes;
 
 namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
 {
-    public class StrategyPatternTests
+    public class CalculationContextTests
     {
         [TypeTraits(Enums.TraitType.Unit)]
         [AreaTraits(Enums.TraitArea.MathOperations)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
-        [Fact]
-        public void Test_AdditionStrategy()
+        [Theory]
+        [InlineData(5, 3, "Resultado da Adição: 8")]
+        public void Test_AdditionStrategy(int a, int b, string expected)
         {
             // Arrange
             var calculator = new CalculationContext(new AdditionCalculationStrategy());
 
             // Act
-            var result = calculator.ExecuteStrategy(5, 3);
+            var result = calculator.ExecuteStrategy(a, b);
 
             // Assert
-            Assert.Equal("Resultado da Adição: 8", result);
+            Assert.Equal(expected, result);
         }
 
         [TypeTraits(Enums.TraitType.Unit)]
@@ -125,6 +121,43 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
 
             // Assert
             Assert.Equal("Resultado da Subtração: 2", result);
+        }
+
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.MathOperations)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
+        [Theory]
+        [InlineData(5, 3, "Resultado da Multiplicação: 15")]
+        [InlineData(6, 3, "Resultado da Divisão: 2")]
+        public void Test_Operations(int a, int b, string expected)
+        {
+            // Arrange
+            var strategy = a == 6 ? (ICalculationStrategy)new DivisionCalculationStrategy() : new MultiplicationCalculationStrategy();
+            var calculator = new CalculationContext(strategy);
+
+            // Act
+            var result = calculator.ExecuteStrategy(a, b);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+        
+        [TypeTraits(Enums.TraitType.Unit)]
+        [AreaTraits(Enums.TraitArea.MathOperations)]
+        [PriorityTraits(Enums.TraitPriority.Low)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Error)]
+        [Theory]
+        [InlineData(-5, 3, typeof(SubtractionCalculationStrategy), typeof(NegativeNumberException))]
+        [InlineData(6, 0, typeof(DivisionCalculationStrategy), typeof(DivideByZeroException))]
+        public void Test_CalculationStrategy_ThrowsException(int a, int b, Type strategyType, Type expectedException)
+        {
+            // Arrange
+            var strategy = (ICalculationStrategy)Activator.CreateInstance(strategyType);
+            var calculator = new CalculationContext(strategy);
+
+            // Act & Assert
+            Assert.Throws(expectedException, () => calculator.ExecuteStrategy(a, b));
         }
     }
 }
