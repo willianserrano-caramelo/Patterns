@@ -10,18 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="LoggerDI\**" />
-    <EmbeddedResource Remove="LoggerDI\**" />
-    <None Remove="LoggerDI\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="BehavioralPatterns\ObserverPattern.cs" />
-    <Compile Remove="Logger.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="app.config" />
     <None Remove="appsettings.test.json" />
   </ItemGroup>
 
@@ -36,16 +24,13 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Logger\Logger.csproj" />
-    <ProjectReference Include="..\Patterns.DesignPatterns\Patterns.DesignPatterns.csproj" />
   </ItemGroup>
 
   <ItemGroup>

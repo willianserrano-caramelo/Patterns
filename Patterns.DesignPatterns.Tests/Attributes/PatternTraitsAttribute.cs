@@ -10,11 +10,11 @@ namespace Patterns.DesignPatterns.Tests.Attributes
 {
     [TraitDiscoverer("Patterns.DesignPatterns.Tests.Discoverers.AreaTraitsDiscoverer", "Patterns.DesignPatterns.Tests")]
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class AreaTraitsAttribute : Attribute, ITraitAttribute
+    public sealed class PatternTraitsAttribute : Attribute, ITraitAttribute
     {
-        public TraitArea Value { get; }
+        public TraitPattern Value { get; }
 
-        public AreaTraitsAttribute(TraitArea value)
+        public PatternTraitsAttribute(TraitPattern value)
         {
             Value = value;
         }

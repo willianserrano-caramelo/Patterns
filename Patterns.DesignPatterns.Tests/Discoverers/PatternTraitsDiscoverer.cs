@@ -8,7 +8,7 @@ using Xunit.Sdk;
 
 namespace Patterns.DesignPatterns.Tests.Discoverers
 {
-    public class AreaTraitsDiscoverer : ITraitDiscoverer
+    public class PatternTraitsDiscoverer : ITraitDiscoverer
     {
         public IEnumerable<KeyValuePair<string, string>> GetTraits(IAttributeInfo traitAttribute)
         {
@@ -18,7 +18,7 @@ namespace Patterns.DesignPatterns.Tests.Discoverers
 
             if (!string.IsNullOrEmpty(value))
             {
-                yield return new KeyValuePair<string, string>("Area", value);
+                yield return new KeyValuePair<string, string>("Pattern", value);
             }
         }
     }
