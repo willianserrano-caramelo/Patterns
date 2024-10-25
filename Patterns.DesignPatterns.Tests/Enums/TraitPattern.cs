@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Patterns.DesignPatterns.Tests.Enums
 {
-    public enum TraitArea
+    public enum TraitPattern
     {
-        MathOperations,
-        Payments
+        Strategy,
+        Observer
     }
 }

@@ -8,7 +8,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
     public class PaymentContextTests
     {
         [TypeTraits(Enums.TraitType.Unit)]
-        [AreaTraits(Enums.TraitArea.Payments)]
+        [PatternTraits(Enums.TraitPattern.Strategy)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Fact]
@@ -25,7 +25,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
         }
 
         [TypeTraits(Enums.TraitType.Unit)]
-        [AreaTraits(Enums.TraitArea.Payments)]
+        [PatternTraits(Enums.TraitPattern.Strategy)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Fact]
@@ -42,7 +42,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
         }
 
         [TypeTraits(Enums.TraitType.Unit)]
-        [AreaTraits(Enums.TraitArea.Payments)]
+        [PatternTraits(Enums.TraitPattern.Strategy)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Theory]
@@ -60,7 +60,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
         }
         
         [TypeTraits(Enums.TraitType.Unit)]
-        [AreaTraits(Enums.TraitArea.Payments)]
+        [PatternTraits(Enums.TraitPattern.Strategy)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Theory]
@@ -79,7 +79,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.StrategyPattern
         }
 
         [TypeTraits(Enums.TraitType.Unit)]
-        [AreaTraits(Enums.TraitArea.Payments)]
+        [PatternTraits(Enums.TraitPattern.Strategy)]
         [PriorityTraits(Enums.TraitPriority.Low)]
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         [Theory]
