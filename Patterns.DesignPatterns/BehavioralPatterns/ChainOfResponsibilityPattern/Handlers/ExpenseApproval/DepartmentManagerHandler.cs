@@ -1,9 +1,4 @@
-﻿using Logger.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Serilog;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers.ExpenseApproval
 {
@@ -15,7 +10,7 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPatter
         {
             if (request is decimal expenseAmount && expenseAmount > 1000 && expenseAmount <= 10000)
             {
-                _logger.LogInfo($"Gerente de Departamento aprovou a despesa de R$ {expenseAmount}");
+                _logger.Information($"Gerente de Departamento aprovou a despesa de R$ {expenseAmount}");
             } else
             {
                 base.HandleRequest(request);

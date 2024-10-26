@@ -1,9 +1,4 @@
-﻿using Logger.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Serilog;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers.Generic
 {
@@ -15,7 +10,7 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPatter
         {
             if (request.ToString() == "B")
             {
-                _logger.LogInfo("ConcreteHandlerB handled request: " + request);
+                _logger.Information("ConcreteHandlerB handled request: " + request);
             } else
             {
                 base.HandleRequest(request);

@@ -1,18 +1,18 @@
-﻿using Logger.Interfaces;
-using Moq;
+﻿using Moq;
 using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers.ExpenseApproval;
 using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Patterns.DesignPatterns.Tests.Attributes;
+using Serilog;
 
 namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ChainOfResponsibilityPattern
 {
     public class ApprovalHandlersTests
     {
         [Fact]
+        [TypeTraits(Enums.TraitType.Unit)]
+        [PatternTraits(Enums.TraitPattern.ChainOfResponsability)]
+        [PriorityTraits(Enums.TraitPriority.High)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         public void TeamManager_Should_Approve_Expense_Less_Than_1000()
         {
             // Arrange
@@ -25,10 +25,14 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ChainOfResponsibility
             teamManager.HandleRequest(500m);
 
             // Assert
-            mockLogger.Verify(logger => logger.LogInfo("Gerente de Equipe aprovou a despesa de R$ 500"), Times.Once);
+            mockLogger.Verify(logger => logger.Information("Gerente de Equipe aprovou a despesa de R$ 500"), Times.Once);
         }
 
         [Fact]
+        [TypeTraits(Enums.TraitType.Unit)]
+        [PatternTraits(Enums.TraitPattern.ChainOfResponsability)]
+        [PriorityTraits(Enums.TraitPriority.High)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         public void DepartmentManager_Should_Approve_Expense_Between_1000_And_10000()
         {
             // Arrange
@@ -41,10 +45,14 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ChainOfResponsibility
             departmentManager.HandleRequest(5000m);
 
             // Assert
-            mockLogger.Verify(logger => logger.LogInfo("Gerente de Departamento aprovou a despesa de R$ 5000"), Times.Once);
+            mockLogger.Verify(logger => logger.Information("Gerente de Departamento aprovou a despesa de R$ 5000"), Times.Once);
         }
 
         [Fact]
+        [TypeTraits(Enums.TraitType.Unit)]
+        [PatternTraits(Enums.TraitPattern.ChainOfResponsability)]
+        [PriorityTraits(Enums.TraitPriority.High)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         public void Director_Should_Approve_Expense_Above_10000()
         {
             // Arrange
@@ -55,10 +63,14 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ChainOfResponsibility
             director.HandleRequest(15000m);
 
             // Assert
-            mockLogger.Verify(logger => logger.LogInfo("Diretor aprovou a despesa de R$ 15000"), Times.Once);
+            mockLogger.Verify(logger => logger.Information("Diretor aprovou a despesa de R$ 15000"), Times.Once);
         }
 
         [Fact]
+        [TypeTraits(Enums.TraitType.Unit)]
+        [PatternTraits(Enums.TraitPattern.ChainOfResponsability)]
+        [PriorityTraits(Enums.TraitPriority.High)]
+        [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         public void Expense_Should_Pass_To_Next_Handler_If_Not_Handled()
         {
             // Arrange
@@ -73,7 +85,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ChainOfResponsibility
             teamManager.HandleRequest(50000m);
 
             // Assert
-            mockLogger.Verify(logger => logger.LogInfo("Diretor aprovou a despesa de R$ 50000"), Times.Once);
+            mockLogger.Verify(logger => logger.Information("Diretor aprovou a despesa de R$ 50000"), Times.Once);
         }
     }
 }

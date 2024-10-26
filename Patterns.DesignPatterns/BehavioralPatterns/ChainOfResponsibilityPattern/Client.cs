@@ -1,6 +1,6 @@
-﻿using Logger.Interfaces;
-using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers.ExpenseApproval;
+﻿using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers.ExpenseApproval;
 using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers.Generic;
+using Serilog;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern
 {
@@ -22,13 +22,13 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPatter
 
             handlerA.SetNext(handlerB);
 
-            _logger.LogInfo("Sending request 'A'");
+            _logger.Information("Sending request 'A'");
             handlerA.HandleRequest("A");
 
-            _logger.LogInfo("Sending request 'B'");
+            _logger.Information("Sending request 'B'");
             handlerA.HandleRequest("B");
 
-            _logger.LogInfo("Sending request 'C'");
+            _logger.Information("Sending request 'C'");
             handlerA.HandleRequest("C");
         }
 
@@ -41,13 +41,13 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPatter
 
             teamManager.SetNext(departmentManager).SetNext(director);
 
-            _logger.LogInfo("Enviando pedido de despesa de R$ 500");
+            _logger.Information("Enviando pedido de despesa de R$ 500");
             teamManager.HandleRequest(500m);
 
-            _logger.LogInfo("Enviando pedido de despesa de R$ 5.000");
+            _logger.Information("Enviando pedido de despesa de R$ 5.000");
             teamManager.HandleRequest(5000m);
 
-            _logger.LogInfo("Enviando pedido de despesa de R$ 50.000");
+            _logger.Information("Enviando pedido de despesa de R$ 50.000");
             teamManager.HandleRequest(50000m);
         }
     }
