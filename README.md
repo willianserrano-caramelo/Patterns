@@ -22,17 +22,17 @@ Os Design Patterns são geralmente classificados em três categorias principais:
 ### 1. Behavioral Patterns (Padrões Comportamentais)
 Esses padrões focam na interação e comunicação entre objetos, facilitando o fluxo de controle entre eles.
 
-- **[Padrão Strategy](#padrão-strategy)**: Define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. 
-- **Observer**: Define uma dependência um-para-muitos entre objetos, onde quando um objeto muda, seus dependentes são notificados.
-- **Command**: Encapsula uma solicitação como um objeto, permitindo parametrizar filas de execução e logs.
-- **Iterator**: Fornece uma maneira de acessar sequencialmente os elementos de uma coleção sem expor sua implementação subjacente.
+- **[Strategy](#padrão-strategy)**: Define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. 
+- **[Observer](#padrão-observer)**: Define uma dependência um-para-muitos entre objetos, onde quando um objeto muda, seus dependentes são notificados.
+- **[Command](#padrão-command)**: Encapsula uma solicitação como um objeto, permitindo parametrizar filas de execução e logs.
+- **[Iterator](#padrão-iterator)**: Fornece uma maneira de acessar sequencialmente os elementos de uma coleção sem expor sua implementação subjacente.
 - **Mediator**: Define um objeto intermediário que encapsula como um conjunto de objetos interage.
 - **Memento**: Captura e restaura o estado interno de um objeto sem violar seu encapsulamento.
 - **State**: Permite que um objeto altere seu comportamento quando seu estado interno muda.
 - **Template Method**: Define o esqueleto de um algoritmo, delegando alguns passos para subclasses.
 - **Visitor**: Permite adicionar novas operações a uma estrutura de objetos sem modificar as classes que a compõem.
-- **Chain of Responsibility**: Passa uma solicitação por uma cadeia de manipuladores até que ela seja processada.
-- **Interpreter**: Avalia e executa uma linguagem ou expressão com base em uma gramática definida.
+- **[Chain of Responsibility](#padrão-chain-of-responsability)**: Passa uma solicitação por uma cadeia de manipuladores até que ela seja processada.
+- **[Interpreter](#padrão-interpreter)**: Avalia e executa uma linguagem ou expressão com base em uma gramática definida.
 
 ### 2. Creational Patterns (Padrões de Criação)
 Esses padrões fornecem maneiras de instanciar objetos, controlando a criação de instâncias para torná-la mais flexível.
@@ -57,7 +57,6 @@ Esses padrões tratam da composição de classes e objetos para formar estrutura
 ## Objetivo do Projeto
 
 Este repositório visa implementar os principais **Design Patterns** em C#, com exemplos práticos e bem documentados, seguindo as boas práticas de desenvolvimento orientado a objetos. Cada padrão de projeto terá uma implementação própria com testes unitários associados para validar o seu comportamento.
-
 
 ## Design Patterns Implementados
 
