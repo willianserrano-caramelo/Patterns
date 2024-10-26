@@ -11,6 +11,7 @@ namespace Patterns.DesignPatterns.Tests.Enums
         Strategy,
         Observer,
         Command,
-        ChainOfResponsability
+        ChainOfResponsability,
+        Interpreter
     }
 }
