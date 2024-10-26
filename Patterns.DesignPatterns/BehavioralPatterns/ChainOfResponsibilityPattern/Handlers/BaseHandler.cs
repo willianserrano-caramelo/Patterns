@@ -1,10 +1,5 @@
-﻿using Logger.Interfaces;
-using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Interfaces;
+using Serilog;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPattern.Handlers
 {
@@ -31,7 +26,7 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ChainOfResponsibilityPatter
                 _nextHandler.HandleRequest(request);
             } else
             {
-                _logger.LogInfo("Nenhum manipulador disponível para esta solicitação.");
+                _logger.Information("Nenhum manipulador disponível para esta solicitação.");
             }
         }
     }

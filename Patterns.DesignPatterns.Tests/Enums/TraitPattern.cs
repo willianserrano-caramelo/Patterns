@@ -9,6 +9,8 @@ namespace Patterns.DesignPatterns.Tests.Enums
     public enum TraitPattern
     {
         Strategy,
-        Observer
+        Observer,
+        Command,
+        ChainOfResponsability
     }
 }

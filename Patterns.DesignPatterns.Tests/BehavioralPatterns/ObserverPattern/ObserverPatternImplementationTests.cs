@@ -1,12 +1,7 @@
-﻿using Logger.Interfaces;
-using Moq;
+﻿using Moq;
 using Patterns.DesignPatterns.BehavioralPatterns.ObserverPattern;
 using Patterns.DesignPatterns.Tests.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ObserverPattern
 {
@@ -27,7 +22,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ObserverPattern
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         public void Should_NotifyConcreteObservers_When_MessageChanges()
         {
-            _mockLogger.Object.LogInfo("Iniciando teste Should_NotifyConcreteObservers_When_MessageChanges");
+            _mockLogger.Object.Information("Iniciando teste Should_NotifyConcreteObservers_When_MessageChanges");
 
             // Arrange
             var subject = new Subject(_mockLogger.Object);
@@ -40,10 +35,10 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ObserverPattern
             subject.ChangeMessage("Test Message");
 
             // Assert
-            _mockLogger.Verify(logger => logger.LogInfo(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverA com a mensagem: Test Message"))), Times.Once);
-            _mockLogger.Verify(logger => logger.LogInfo(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverB com a mensagem: Test Message"))), Times.Once);
+            _mockLogger.Verify(logger => logger.Information(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverA com a mensagem: Test Message"))), Times.Once);
+            _mockLogger.Verify(logger => logger.Information(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverB com a mensagem: Test Message"))), Times.Once);
 
-            _mockLogger.Object.LogInfo("Teste Should_NotifyConcreteObservers_When_MessageChanges finalizado com sucesso");
+            _mockLogger.Object.Information("Teste Should_NotifyConcreteObservers_When_MessageChanges finalizado com sucesso");
         }
 
         [Fact]
@@ -53,7 +48,7 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ObserverPattern
         [ExpectedOutcomeTraits(Enums.TraitExpectedOutcome.Success)]
         public void Should_OnlyNotifyRemainingConcreteObservers_When_OneObserverIsRemoved()
         {
-            _mockLogger.Object.LogInfo("Iniciando teste Should_OnlyNotifyRemainingConcreteObservers_When_OneObserverIsRemoved");
+            _mockLogger.Object.Information("Iniciando teste Should_OnlyNotifyRemainingConcreteObservers_When_OneObserverIsRemoved");
 
             // Arrange
             var subject = new Subject(_mockLogger.Object);
@@ -68,10 +63,10 @@ namespace Patterns.DesignPatterns.Tests.BehavioralPatterns.ObserverPattern
             subject.ChangeMessage("Another Test Message");
 
             // Assert
-            _mockLogger.Verify(logger => logger.LogInfo(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverA com a mensagem: Test Message"))), Times.Never);
-            _mockLogger.Verify(logger => logger.LogInfo(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverB com a mensagem: Another Test Message"))), Times.Once);
+            _mockLogger.Verify(logger => logger.Information(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverA com a mensagem: Test Message"))), Times.Never);
+            _mockLogger.Verify(logger => logger.Information(It.Is<string>(msg => msg.Contains("Notificando observer: ConcreteObserverB com a mensagem: Another Test Message"))), Times.Once);
 
-            _mockLogger.Object.LogInfo("Teste Should_OnlyNotifyRemainingConcreteObservers_When_OneObserverIsRemoved finalizado com sucesso");
+            _mockLogger.Object.Information("Teste Should_OnlyNotifyRemainingConcreteObservers_When_OneObserverIsRemoved finalizado com sucesso");
         }
     }
 }

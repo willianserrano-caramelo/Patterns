@@ -1,11 +1,5 @@
-﻿using Logger;
-using Logger.Interfaces;
-using Patterns.DesignPatterns.BehavioralPatterns.ObserverPattern.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Patterns.DesignPatterns.BehavioralPatterns.ObserverPattern.Interfaces;
+using Serilog;
 
 namespace Patterns.DesignPatterns.BehavioralPatterns.ObserverPattern
 {
@@ -23,20 +17,20 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ObserverPattern
         public void RegisterObserver(IObserver observer)
         {
             _observers.Add(observer);
-            _logger.LogInfo($"Observer registrado: {observer.GetType().Name}");
+            _logger.Information($"Observer registrado: {observer.GetType().Name}");
         }
 
         public void RemoveObserver(IObserver observer)
         {
             _observers.Remove(observer);
-            _logger.LogInfo($"Observer removido: {observer.GetType().Name}");
+            _logger.Information($"Observer removido: {observer.GetType().Name}");
         }
 
         public void NotifyObservers()
         {
             foreach (var observer in _observers)
             {
-                _logger.LogInfo($"Notificando observer: {observer.GetType().Name} com a mensagem: {_message}");
+                _logger.Information($"Notificando observer: {observer.GetType().Name} com a mensagem: {_message}");
                 observer.Update(_message);
             }
         }
@@ -44,7 +38,7 @@ namespace Patterns.DesignPatterns.BehavioralPatterns.ObserverPattern
         public void ChangeMessage(string message)
         {
             _message = message;
-            _logger.LogInfo($"Mensagem alterada: {message}");
+            _logger.Information($"Mensagem alterada: {message}");
             NotifyObservers();
         }
     }
